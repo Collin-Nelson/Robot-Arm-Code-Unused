@@ -20,13 +20,13 @@
 
 #define UNLIMITED_ROTATIONS -1 // Used to indicate that a motor is not limited
 
-#define REVERSE false // Used to set the direction of the motor to reverse
-#define FORWARD true // Used to set the direction of the motor to forward
+#define CLOCKWISE false // Used to set the direction of the motor to reverse
+#define COUNTERCLOCKWISE true // Used to set the direction of the motor to forward
 
 // Constants
 #define DOF 6 // Degrees of freedom in the arm
 #define SECONDS_TO_MICROSECONDS 1000000.0f // Converstion from seconds to microseconds
-#define DEGREES_PER_ROTATION 360.0f // Number of degrees in one rotation
+#define DEGREES_PER_ROTATION 360.0 // Number of degrees in one rotation
 #define START_HOME_MOVEMENT -1 // This is used to setermine if a stepper motor needs to home
 #define MINUTES_TO_SECONDS 60.0 // Number of seconds in a minute
 
@@ -44,5 +44,5 @@
 #define ABS_MAX_RPM       {5000, 5000, 5000, 5000, 5000, 5000}
 #define GEAR_REDUCTION    {(10.0 * (50.0 / 15.0)), 50.0, 99.05, 1.0, 1.0, 1.0}
 #define MAX_POSITION      {2 * 47000, -1, -1, -1, -1, -1}
-#define HOMING_RPM        {9, 9, 9, 10, 10, 10}
+#define HOMING_RPM        {5, 5, 5, 10, 10, 10}
 #define INVERT_DIR        {1, 0, 0, 0, 0, 0}

@@ -11,8 +11,7 @@ protected:
     Stepper axis[DOF];
     /** Limit switch pins */
     long limitSwitchPins[DOF] = LIMIT_SWITCH_PINS;
-    /** Homing RPM for each axis */
-    double homingRPM[DOF] = HOMING_RPM;
+
 public:
     /**
      * Function for constructing the Controller. Takes an array of steppers as the parameter
@@ -30,9 +29,20 @@ public:
      */
     void update();
 
-    Stepper* getSteppers() {
+    Stepper* getSteppers()
+    {
         return &this->axis[0];
     }
 
     bool isActive();
+
+    void traverseStraightLine(
+        double* initAngles,
+        double* finalAngles,
+        double velocity,
+        double acceleration,
+        double initVelocity,
+        double finalVelocity);
+
+    void performTrajectory(double* updatedTrajectory);
 };

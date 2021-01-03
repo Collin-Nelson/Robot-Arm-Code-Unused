@@ -12,53 +12,28 @@ int pins[DOF] = LIMIT_SWITCH_PINS;
 Stepper* axis = controller.getSteppers();
 uint32_t timer;
 
+double startPos[DOF] = { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 };
+double finalPos1[DOF] = { 165.0, 45.0, 0.0, 0.0, 0.0, 0.0 };
+double finalPos2[DOF] = { 165.0, 135.0, 0.0, 0.0, 0.0, 0.0 };
+
+// Axis 1 MAX: 327.5 Degrees
+
 void setup()
 {
     Serial.begin(BAUDRATE);
     delay(8000);
-    Serial.println("--- Initialization STARTING ---");
+    Serial.println("\n--- Initialization STARTING ---");
     controller.home();
-    Serial.println("--- Initialization COMPLETE ---");
-
-    axis[0].setRPM(20, false);
-    axis[0].setAcceleration(0.95, 0.1);
-    axis[0].setTargetPosition(90000, true, true, true);
-    timer = micros();
-    /*
-
-    axis[1].setRPM(5, false);
-    axis[1].setAccelerationDeceleration(0.2, 0.2, 1, 1);
-    axis[1].setTargetPosition(15000, true, true, false);
-
-    axis[2].setRPM(10, false);
-    axis[2].setAccelerationDeceleration(0.2, 0.2, 1, 1);
-    axis[2].setTargetPosition(85000, true, true, false);
-
-    uint32_t startTime = micros();
-    double value = sqrt(sin(0.25) * sin(0.45));
-    Serial.print("Calculation Time: ");
-    Serial.println(micros() - startTime);
-
-    axis[1].setRPM(5, false);
-    axis[1].setTargetPosition(9000, false, false); // 29700 for 0 Degrees
-    axis[2].setRPM(5, false);
-    axis[2].setTargetPosition(30000, false, false);
-    */
+    Serial.println("--- Initialization COMPLETE ---\n");
+    delay(1000);
+    controller.traverseStraightLine(startPos, finalPos1, 0.15e-3, 0.1e-9, 0.0, 0.0);
 }
 
 void loop()
 {
-    controller.update();
+    controller.traverseStraightLine(finalPos1, finalPos2, 0.15e-3, 0.1e-9, 0.0, 0.0);
+    controller.traverseStraightLine(finalPos2, finalPos1, 0.15e-3, 0.1e-9, 0.0, 0.0);
+    delay(5000);
+    //controller.update();
     //testLimitSwitchs(10000, 10, pins);
-    if (!controller.isActive()) {
-        Serial.print("Total Movement Time: ");
-        Serial.println(micros() - timer);
-        timer = micros();
-        delay(50);
-        if (axis[0].getCurrentPosition() != 0) {
-            axis[0].setTargetPosition(0, true, true, true);
-        } else {
-            axis[0].setTargetPosition(90000, true, true, true);
-        }
-    }
 }
