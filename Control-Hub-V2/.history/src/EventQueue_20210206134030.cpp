@@ -95,12 +95,12 @@ void EventQueue::addEvent(EventNode* newEvent)
 
 bool EventQueue::addMovementEvent(double* data)
 {
-    double finalPosition[DOF] = { data[0], data[1], data[2], data[3], data[4], data[5] };
+    double finalPosition[DOF] = {data[0], data[1], data[2], data[3], data[4], data[5]};
     double velocity = data[6];
     double acceleration = data[7];
     double initVelocity = data[8];
     double finalVelocity = data[9];
-    bool useEncoderPosition = (bool)((int)data[10]);
+    bool useEncoderPosition = (bool) ((int) data[10]);
     return addMovementEvent(finalPosition, velocity, acceleration, initVelocity, finalVelocity, useEncoderPosition);
 }
 
@@ -201,7 +201,7 @@ void EventQueue::processMovementEvent()
                 this->head->useEncoderPosition = true;
                 delay(1000);
                 calculateMovementEvent();
-                break; 
+                break;
             }
         }
     } else {

@@ -40,7 +40,7 @@
 #define GEAR_REDUCTION    {40.0, 50.0, 50.0, 14.0 * (28.0 / 10), 10.0, 19.0}
 #define MAX_POSITION      {-1, -1, -1, -1, -1, -1}
 #define INVERT_DIR        {1, 1, 1, 1, 1, 1}
-#define CRASH_DETECTION   {1, 1, 1, 1, 1, 1}
+#define CRASH_DETECTION   {1, 0, 1, 0, 1, 1}
 
 #define ENCODER_1_PINS    39, 7
 #define ENCODER_2_PINS    40, 25

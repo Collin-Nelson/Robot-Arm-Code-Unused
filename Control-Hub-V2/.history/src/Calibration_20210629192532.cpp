@@ -27,6 +27,7 @@ void singleAxisMovement(Controller* controller, uint8_t axis, double targetPosit
 
 bool home(Controller* controller)
 {
+    limitSwitchCalibration(controller);
     bool axisHomed[DOF] = { false };
     int axisHomedCount = 0;
     Serial.println("  --- Homing Calibration: STARTING ---");
@@ -157,7 +158,7 @@ bool encoderCalibration(Controller* controller, uint8_t axis, int iterations)
     double axisMovements[DOF] = { 270, 90, 180, 180, 90, 330 };
     double axisMovements2[DOF] = { 0 };
     for (int i = 0; i < DOF_ACTIVE; i++) {
-        if (!controller->getSteppers()[i].isCrashDetectionEnabled()) {
+        if (!controller->getSteppers()[i].isCrashDetectionEnabled()){
             Serial.println("  --> Axis Crash Detection is Disabled");
             continue;
         }

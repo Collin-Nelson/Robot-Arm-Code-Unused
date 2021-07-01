@@ -13,7 +13,7 @@ void setup()
     Serial.begin(BAUDRATE);
     delay(STARTUP_DELAY);
     Serial.println("\n--- Initialization STARTING ---");
-    //limitSwitchCalibration(&controller);
+    limitSwitchCalibration(&controller);
     home(&controller);
     Serial.println("--- Initialization COMPLETE ---\n");
 }

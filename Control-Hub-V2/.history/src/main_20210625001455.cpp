@@ -13,8 +13,7 @@ void setup()
     Serial.begin(BAUDRATE);
     delay(STARTUP_DELAY);
     Serial.println("\n--- Initialization STARTING ---");
-    //limitSwitchCalibration(&controller);
-    home(&controller);
+    performFullCalibration(&controller);
     Serial.println("--- Initialization COMPLETE ---\n");
 }
 
@@ -38,8 +37,7 @@ void loop()
             Serial.println("Command Received! 3");
             controller.savePosition();
         }
-    }
-    */
+    }*/
     controller.update();
     //controller.traverseStraightLine(pos1, HOMING_VELOCITY * 10, HOMING_ACCELERATION*5, 0, 0, false, true);
     //controller.traverseStraightLine(pos2, HOMING_VELOCITY * 10, HOMING_ACCELERATION*5, 0, 0, false, true);

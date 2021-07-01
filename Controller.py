@@ -2,9 +2,9 @@ from time import sleep
 import serial
 import struct
 
-ser = serial.Serial("COM18", 9600)
+ser = serial.Serial("COM5", 250000)
 
-speed = 0.8e-3
+speed = 0.5e-3
 acceleration = 1.0e-10
 
 print("Starting...")
@@ -36,7 +36,7 @@ def sendMovement1(axis1, axis2, axis3, axis4, axis6):
     print("Done!")
 
 def goHome():
-    data = [1, 0, 0, 0, 180, 0, 0, speed, acceleration, 0, 0, 0, -1]
+    data = [1, 170, 35.45, 142.6, 160, 71.5, 150, speed, acceleration, 0, 0, 0, -1]
     print(len(data))
     print(data)
     for i in range(len(data)):
@@ -51,9 +51,18 @@ def goHome():
             print("Teensy: " + dataRecived.decode("ascii")[:-2])
     print("Done!")
 
+#goHome()
 goHome()
-sendMovement1(180, 0, 180, 180, 180)
-sendMovement1(180, 130, 45, 180, 180)
+
+for num in range(1):
+    #sendMovement1(250, 36 + 90, 120, 142.5, 180)
+    sendMovement1(170, 150, 60 + 180, 142.5, 180)
+    sendMovement1(80, 50, 180, 142.5, 180)
+    sendMovement1(80, 110, 90, 142.5, 180)
+    
+goHome()
+"""
+#sendMovement1(180, 130, 45, 180, 180)
 
 sendMovement1(300, 130, 45, 105, 225)
 sendMovement1(135, 130, 45, 225, 145)
@@ -67,7 +76,7 @@ sendMovement1(180, 130, 225, 180, 180)
 
 sendMovement1(225, 45, 90, 135, 180)
 sendMovement1(135, 130, 45, 180, 180)
-goHome()
+"""
 
 
 

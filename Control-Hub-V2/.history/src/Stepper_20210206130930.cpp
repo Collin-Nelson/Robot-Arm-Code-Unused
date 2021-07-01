@@ -164,13 +164,13 @@ String Stepper::toString()
     motorString = String(motorString + String(this->dirPin));
     motorString = String(motorString + ", ");
     motorString = String(motorString + String(this->limPin));
-    motorString = String(motorString + " ]\tPos[ ");
+    motorString = String(motorString + " ]\tPosition[ ");
     motorString = String(motorString + String(this->currentPosition));
     motorString = String(motorString + " Steps, \t");
     motorString = String(motorString + String(getCurrentPositionDegrees(), 5));
     motorString = String(motorString + " Degrees ]\tEncoder[ ");
     motorString = String(motorString + String(readEncoderPosition()));
-    motorString = String(motorString + " ]    \tDir[ ");
+    motorString = String(motorString + " ]    \tDirection[ ");
     if (this->counterClockwise) {
         motorString = String(motorString + "CNTCLKWS ]");
     } else {

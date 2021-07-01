@@ -201,7 +201,7 @@ void EventQueue::processMovementEvent()
                 this->head->useEncoderPosition = true;
                 delay(1000);
                 calculateMovementEvent();
-                break; 
+                break;
             }
         }
     } else {

@@ -13,15 +13,13 @@ void setup()
     Serial.begin(BAUDRATE);
     delay(STARTUP_DELAY);
     Serial.println("\n--- Initialization STARTING ---");
-    //limitSwitchCalibration(&controller);
-    home(&controller);
+    
     Serial.println("--- Initialization COMPLETE ---\n");
 }
 
 void loop()
 {
     //delay(1000);
-    /*
     if (Serial.available()) {
         String input = Serial.readString();
         if (input.compareTo("1\n") == 0) {
@@ -39,7 +37,6 @@ void loop()
             controller.savePosition();
         }
     }
-    */
     controller.update();
     //controller.traverseStraightLine(pos1, HOMING_VELOCITY * 10, HOMING_ACCELERATION*5, 0, 0, false, true);
     //controller.traverseStraightLine(pos2, HOMING_VELOCITY * 10, HOMING_ACCELERATION*5, 0, 0, false, true);
